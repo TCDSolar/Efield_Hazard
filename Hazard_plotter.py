@@ -9,7 +9,8 @@ The purpose of this script is to provide generate hazard maps of geoelectric
 fields using modelled geoelectric field time series.
 
 
-The maps are generated following the method described in Malone-Leigh et al 2023
+The maps are generated following the method described in Malone-Leigh et al, 2024
+The 25 year geoelectric field time series are available at https://zenodo.org/records/10426416 (Campnaya et al, 2023)
 
 This script:
 
@@ -287,7 +288,7 @@ for threshold in thres_list:
             print('Loading Kp data')
             
             kp_data=np.loadtxt(folder1+'Kp_ap_since_1932.txt',skiprows=172401,usecols=[7])
-            
+            kp_data=[float(i) for i in kp_data]
             #Getting rid of padding at edge of series
             if gal=='no':
                 Ex=Ex[479610:-479610]
@@ -506,7 +507,7 @@ for threshold in thres_list:
 
 
             max_vals.append(np.max(base))
-            
+            #Adding labels for example sites
             sites=['Site A Gal','Site A No Gal','Site B Gal','Site B No Gal',
                    'Site C Gal','Site C No Gal']
             colors=['blue','blue','orange','orange','green','green']
